@@ -10,7 +10,7 @@ def get_stop_words(path):
     except IOError:
         return None
     return f.read().decode("utf-8", 'ignore').split()
-        
+
 def formalize(filename):
     morph = get_morph(DICTS_DIR)
     stop_words = get_stop_words(DICTS_DIR + '/stop_test.txt')
@@ -20,7 +20,7 @@ def formalize(filename):
         f = open(filename)
     except IOError:
         return None
-    for line in f.readlines():        
+    for line in f.readlines():
         for word in line.split():
             word = word.decode("utf-8", 'ignore')
             #import pdb; pdb.set_trace()
@@ -41,7 +41,7 @@ def formalize(filename):
     for key in dict:
         dict[key] /= words
     return dict
-    
+
 if __name__=='__main__':
     d = formalize("/home/xam_vz/test.txt")
     for el in d:
