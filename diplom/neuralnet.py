@@ -6,10 +6,7 @@ class NeuralNet(object):
         self.net = ffnet(conec)
 
     def train(self, input, target):
-        #TODO: check if imput and target are correct.
-        # Train network
-        #first find good starting point with genetic algorithm
-        #(not necessary, but may be helpful)
+        #TODO: check if input and target are correct.
         print "FINDING STARTING WEIGHTS WITH GENETIC ALGORITHM..."
         self.net.train_genetic(input, target, individuals=20,
                                generations=500)

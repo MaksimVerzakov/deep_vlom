@@ -19,18 +19,17 @@ def formalize(filename):
     try:
         f = open(filename)
     except IOError:
-        return None
+        raise
     for line in f.readlines():
         for word in line.split():
             word = word.decode("utf-8", 'ignore')
-            #import pdb; pdb.set_trace()
             word = word.strip(u'[,.:;\"\')«»(?<>!-_—//=]\n\t')
             word = morph.normalize(word.upper())
-            word = word.lower()
             if isinstance(word, set):
                 word = word.pop()
             if not word:
                 continue
+            word = word.lower()
             words += 1
             if word in stop_words:
                 continue
@@ -43,6 +42,6 @@ def formalize(filename):
     return dict
 
 if __name__=='__main__':
-    d = formalize("/home/xam_vz/test.txt")
+    d = formalize("/home/xam_vz/GULAG2.TXT")
     for el in d:
         print '%s : %s\n' % (el, d[el])
