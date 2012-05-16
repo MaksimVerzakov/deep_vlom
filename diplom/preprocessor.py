@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -- coding: utf-8 --
+import re
 
 from pymorphy import get_morph
 from settings import DICTS_DIR
@@ -41,7 +42,13 @@ def formalize(filename):
         dict[key] /= words
     return dict
 
+def remove_transfer(filename):
+    o = open(filename,"r+")
+    data = o.read()
+    new = re.sub("-\n","", data)
+    o.seek(0)
+    o.write(new)
+    o.close()
+
 if __name__=='__main__':
-    d = formalize("/home/xam_vz/GULAG2.TXT")
-    for el in d:
-        print '%s : %s\n' % (el, d[el])
+    pass
