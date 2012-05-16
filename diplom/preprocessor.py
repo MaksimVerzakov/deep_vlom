@@ -20,6 +20,7 @@ def formalize(filename):
         f = open(filename)
     except IOError:
         raise
+    print 'Formalization\n'
     for line in f.readlines():
         for word in line.split():
             word = word.decode("utf-8", 'ignore')
@@ -40,8 +41,3 @@ def formalize(filename):
     for key in dict:
         dict[key] /= words
     return dict
-
-if __name__=='__main__':
-    d = formalize("/home/xam_vz/GULAG2.TXT")
-    for el in d:
-        print '%s : %s\n' % (el, d[el])
