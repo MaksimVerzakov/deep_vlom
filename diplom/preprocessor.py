@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -- coding: utf-8 --
+import re
 
 from pymorphy import get_morph
 from settings import DICTS_DIR
@@ -41,3 +42,11 @@ def formalize(filename):
     for key in dict:
         dict[key] /= words
     return dict
+
+def remove_transfer(filename):
+    o = open(filename,"r+")
+    data = o.read()
+    new = re.sub("-\n","", data)
+    o.seek(0)
+    o.write(new)
+    o.close()
