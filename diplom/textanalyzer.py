@@ -40,7 +40,6 @@ class MyAppBaseController(controller.CementBaseController):
         crete_base(path, host, port, name)
 
 
-
 class MyApp(foundation.CementApp):
     class Meta:
         label = 'textanalyzer'

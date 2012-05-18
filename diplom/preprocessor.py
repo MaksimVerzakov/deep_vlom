@@ -25,7 +25,8 @@ def formalize(filename):
     for line in f.readlines():
         for word in line.split():
             word = word.decode("utf-8", 'ignore')
-            word = word.strip(u'[,.:;\"\')«»(?<>!-_—//=]\n\t')
+            word = word.strip(u'[,.:;\"\')$«»(?<>!-_—//=]\n\t')
+            word = word.replace('.', '_')
             word = morph.normalize(word.upper())
             if isinstance(word, set):
                 word = word.pop()

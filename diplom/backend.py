@@ -10,10 +10,10 @@ class TextBase(object):
 
     def append(self, class_name, words_dict):
         for word in words_dict:
-            if word not in vocabulary:
-                vocabulary.append(word)
-        word_dict['_class_name'] = class_name
-        self.collection.insert(word_dict)
+            if word not in self.vocabulary:
+                self.vocabulary.append(word)
+        words_dict['_class_name'] = class_name
+        self.collection.insert(words_dict)
 
     def _normalize(self):
         doc_count = self.collection.count()
@@ -30,7 +30,7 @@ class TextBase(object):
             if not d[doc['_class_name']]:
                 d[doc['_class_name']] = []
             tmp_list = []
-            for i in vocabulary:
+            for i in self.vocabulary:
                 tmp_list.append(el.get(i, 0.0))
             d[doc['_class_name']].append(tmp_list)
 
