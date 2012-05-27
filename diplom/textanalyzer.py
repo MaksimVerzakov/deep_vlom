@@ -27,9 +27,12 @@ class MyAppBaseController(controller.CementBaseController):
         host = self.pargs.host or MONGODB_BACKEND_SETTINGS['host']
         port = self.pargs.port or MONGODB_BACKEND_SETTINGS['port']
         name = self.pargs.name or MONGODB_BACKEND_SETTINGS['database']
-        netpath = self.pargs.netpath or None
-        if not netpath:
-            crete_base(path, host, port, name)
+        from backend import TextBase
+        tb = TextBase(host, port, name)
+        tb._normalize()
+        #netpath = self.pargs.netpath or None
+        #if not netpath:
+        #    crete_base(path, host, port, name)
 
     @controller.expose(help="another base controller command")
     def create_base(self):

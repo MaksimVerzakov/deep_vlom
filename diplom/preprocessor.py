@@ -21,7 +21,6 @@ def formalize(filename):
         f = open(filename)
     except IOError:
         raise
-    print 'Formalization\n'
     for line in f.readlines():
         for word in line.split():
             word = word.decode("utf-8", 'ignore')
@@ -30,7 +29,7 @@ def formalize(filename):
             word = morph.normalize(word.upper())
             if isinstance(word, set):
                 word = word.pop()
-            if not word:
+            else:
                 continue
             word = word.lower()
             words += 1

@@ -276,8 +276,7 @@ tx = 0 .
 уменьшению, так и к увеличению энергии
 границы.
 • Функция γ (t x ) содержит большее число
-минимумов, чем соответствующее сечение γ -
-поверхности. Причем, значения энергии
+минимумов, чем соответствующее сечение γ поверхности. Причем, значения энергии
 Рис.3. Сечение γ -поверхности для
 границы в точках минимума функции γ (t x ) в
 границы Σ=5(210)[001] при сдвиге
@@ -387,8 +386,7 @@ http://zhurnal.ape.relarn.ru/articles/2003/179.pdf
 "
 "
 вытекает, что плоскость может измениться на 0.5bПРН или − 2bПРН . В области 6 с
-увеличением сдвига энергия границы уменьшается, в то время как на сечении γ -
-поверхности, наоборот, возрастает. Изменение плоскости границы в области 6 равно вектору
+увеличением сдвига энергия границы уменьшается, в то время как на сечении γ поверхности, наоборот, возрастает. Изменение плоскости границы в области 6 равно вектору
 "
 − 0.5bПРН . Интересно отметить, что в области 7 стабилизация структуры происходит, когда
 "
@@ -421,8 +419,7 @@ http://zhurnal.ape.relarn.ru/articles/2003/179.pdf
 от функции γ (t x ) , является непрерывной и не
 испытывает никаких скачков. Из рисунка
 видно, что, как и в случае сечения вдоль
-направления t z = 0 , локальные минимумы γ -
-поверхности
+направления t z = 0 , локальные минимумы γ поверхности
 соответствуют
 локальным
 минимумам функции γ (t z ) . Охарактеризуем
@@ -612,8 +609,7 @@ in aluminium // Acta Met, 1977, Vol. 25, No. 5, P. 475−483.
 3. Wang Gui-Jin., Shwartz D., Yoonsik OH., Vitek V. Atomistic models of grain boundaries
 and interpretation of structural observations // Grain boundary structure and related phenomena
 proceedings of JIMIC-4, 1986, P. 155−162.
-4. Forwood C.T., Clarenbrough L.M. Rigid body displacements at a faceted Σ3 boundary in α-
-iron // Phys. Stat. Sol. (a), 1988, Vol. 105, P. 365−375.
+4. Forwood C.T., Clarenbrough L.M. Rigid body displacements at a faceted Σ3 boundary in αiron // Phys. Stat. Sol. (a), 1988, Vol. 105, P. 365−375.
 5. Vitek V. Intrinsic stacking faults in body-centered cubic crystals // Phil. Mag. A, 1968, Vol. 18,
 No. 147, P. 773−786.
 6. Mishin Yu., Farkas D. Atomistic simulation of [001] symmetrical tilt grain boundaries in NiAl
@@ -633,4 +629,6 @@ rigid-body translations along grain boundaries in nanostructured materials // Ma
 Au, Ni, Pd, Pt, and their alloys // Phys. Rev. B, 1986, Vol. 33, No. 2, P. 7983−7991.
 13. Foiles S.M. Embedded-atom and related methods for modeling metallic systems // MRS Bull,
 1996, Vol. 21, No. 2, P. 24−28.
+
+−28.
 
