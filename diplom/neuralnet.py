@@ -1,4 +1,4 @@
-from ffnet import ffnet, mlgraph, savenet, loadnet, exportnet
+from ffnet import ffnet, mlgraph, savenet, loadnet, exportnetzz
 from backend import TextBase
 
 class NeuralNet(object):

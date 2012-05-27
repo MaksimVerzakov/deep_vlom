@@ -32,8 +32,9 @@ def formalize(filename):
             else:
                 continue
             word = word.lower()
+            print word
             words += 1
-            if word in stop_words:
+            if word in stop_words or not word:
                 continue
             if not word in dict:
                 dict[word] = 1.0

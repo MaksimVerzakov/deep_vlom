@@ -73,8 +73,7 @@ A
 цикла
 порождают
 информационную зависимость, поскольку оба обращаются к ячейке
-памяти A[1]: вхождение A[i] - на первой итерации цикла, а A[i-1] -
-на второй.
+памяти A[1]: вхождение A[i] - на первой итерации цикла, а A[i-1] на второй.
 Дуги информационных зависимостей бывают четырех видов, в
 зависимости от типов начала и конца:
 • от генератора к использованию – истинная информационная
@@ -266,8 +265,7 @@ Morgan Kaufmann Publishers Inc. 2001
 пьезопреобразователей // Известия ВУЗов. Северо-Кавказский регион.
 Естеств. науки. 2001. Спецвыпуск. Математическое моделирование.
 С.122-125.
-3. Lamport L. The parallel execution of DO loops// Commun. ACM.-
-1974.- v.17, N 2, p. 83-93.
+3. Lamport L. The parallel execution of DO loops// Commun. ACM.1974.- v.17, N 2, p. 83-93.
 4. Петренко В.В. Внутреннее представление Reprise
 распараллеливающей системы. // Труды четвертой международной
 конференции «Параллельные вычисления и задачи управления»
@@ -277,9 +275,11 @@ Morylev R.I.
 Parallel loop determination tool
 The paper consider the conditions of parallel execution of do loops on
 SIMD and MIMD machines both with shared and distributed memory. The
-description of the automatic tool implementing described analysis in High-
-level dialogic optimizing parallelizer is presented.
+description of the automatic tool implementing described analysis in Highlevel dialogic optimizing parallelizer is presented.
 Keywords: loop parallelization, information dependency, SIMD,
 MIMD, shared memory, distributed memory.
+10
+
+.
 10
 
