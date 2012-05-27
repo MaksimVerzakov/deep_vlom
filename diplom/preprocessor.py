@@ -30,11 +30,12 @@ def formalize(filename):
             word = morph.normalize(word.upper())
             if isinstance(word, set):
                 word = word.pop()
-            if not word:
+            else:
                 continue
             word = word.lower()
+            print word
             words += 1
-            if word in stop_words:
+            if word in stop_words or not word:
                 continue
             if not word in dict:
                 dict[word] = 1.0
