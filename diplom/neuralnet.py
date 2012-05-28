@@ -1,8 +1,9 @@
-from ffnet import ffnet, mlgraph, savenet, loadnet, exportnetzz
+from ffnet import ffnet, mlgraph, savenet, loadnet
 from backend import TextBase
 
 class NeuralNet(object):
     def __init__(self, layer_list):
+	print 'Creating net'
         conec = mlgraph(layer_list)
         self.net = ffnet(conec)
 
@@ -11,10 +12,10 @@ class NeuralNet(object):
         input = []
         target = []
         for el in dict:
-            input.extend(dict(el))
+            input.extend(dict[el])
             null_tar = [0 for x in range(len(dict))]
             null_tar[dict.keys().index(el)] = 1.0
-            target.extend([null_tar for x in range(dict(el))])
+            target.extend([null_tar for x in range(len(dict[el]))])
         self.net.train_genetic(input, target, individuals=20,
                                generations=500)
         #then train with scipy tnc optimizer

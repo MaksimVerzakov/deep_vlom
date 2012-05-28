@@ -29,14 +29,6 @@ class MyAppBaseController(controller.CementBaseController):
         host = self.pargs.host or MONGODB_BACKEND_SETTINGS['host']
         port = self.pargs.port or MONGODB_BACKEND_SETTINGS['port']
         name = self.pargs.name or MONGODB_BACKEND_SETTINGS['database']
-<<<<<<< HEAD
-        from backend import TextBase
-        tb = TextBase(host, port, name)
-        tb._normalize()
-=======
-        base = TextBase(host, port, name)
-        base.to_dict()
->>>>>>> f5f0467622156d24492931ddd1d81e4284022149
         #netpath = self.pargs.netpath or None
         #if not netpath:
         #    crete_base(path, host, port, name)
@@ -57,10 +49,9 @@ class MyAppBaseController(controller.CementBaseController):
         name = self.pargs.name or MONGODB_BACKEND_SETTINGS['database']
         from backend import TextBase
         base = TextBase(host, port, name)
-        import pdb; pdb.set_trace()
         t0 = len(base.vocabulary)
         t1 = int(len(base.vocabulary)*1.5)
-        net = NeuralNet([t0, t1, base.count])
+        net = NeuralNet([t0, base.count])
         net.train(base.to_dict())
 
 class MyApp(foundation.CementApp):
