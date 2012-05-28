@@ -17,8 +17,7 @@ given by connection tensor and normal linear connection object. They define its 
 Semicanonical case is investigated when subtensor of the connection tensor vanishes. Two notions are
 involved: non-degeneration tensor of torsion and semiholonomical distribution. It is proved that vanishing of
 non-degeneration tensor implies degenerating to linear connection of the semicanonical normal affine connection.
-The notion of semiholonomity let us describe semicanonical connection without torsion with non-zero non-
-degeneration tensor.
+The notion of semiholonomity let us describe semicanonical connection without torsion with non-zero nondegeneration tensor.
 Ключевые слова: проективное пространство, распределение плоскостей, аффинная связность, линейная
 связность, объект связности, тензор кривизны, тензор кручения, полуголономность.
 Key words: projective space, distribution of planes, affine connection, linear connection, connection object,
@@ -68,8 +67,7 @@ J,
 I
 удовлетворяют
 . (2)
-В проективном пространстве Pn рассмотрим общее, то есть неголономное распределение m-
-0
+В проективном пространстве Pn рассмотрим общее, то есть неголономное распределение m0
 мерных плоскостей как n-параметрическое семейство Sn центрированных m-плоскостей Pm
 ( 0 m n ).
 Замечание 1. Распределение Sn и m-поверхность, представляемая как семейство касательных
@@ -492,4 +490,6 @@ No 37. С. 179—187.
 пространстве. Калининград, 2009.
 Об авторе
 Ю. И. Шевченко — канд. физ.-мат. наук, доц., РГУ им. И. Канта.
+
+�.
 

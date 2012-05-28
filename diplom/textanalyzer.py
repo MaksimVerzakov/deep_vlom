@@ -1,7 +1,7 @@
 from cement2.core import backend, foundation, controller, handler
 from base import crete_base
 from neuralnet import NeuralNet
-from backend import TextBase
+from backend import TextBase, In_Out
 from settings import TEXT_DIR, MONGODB_BACKEND_SETTINGS
 
 class MyAppBaseController(controller.CementBaseController):
@@ -29,8 +29,6 @@ class MyAppBaseController(controller.CementBaseController):
         host = self.pargs.host or MONGODB_BACKEND_SETTINGS['host']
         port = self.pargs.port or MONGODB_BACKEND_SETTINGS['port']
         name = self.pargs.name or MONGODB_BACKEND_SETTINGS['database']
-        base = TextBase(host, port, name)
-        base.to_dict()
         #netpath = self.pargs.netpath or None
         #if not netpath:
         #    crete_base(path, host, port, name)
@@ -51,11 +49,16 @@ class MyAppBaseController(controller.CementBaseController):
         name = self.pargs.name or MONGODB_BACKEND_SETTINGS['database']
         from backend import TextBase
         base = TextBase(host, port, name)
-        import pdb; pdb.set_trace()
+        input, target = base.to_lists()
+        #import pdb; pdb.set_trace()
+        #i_o = In_Out(host, port, name)
+        #i_o.append('004', input, target, base.weight_corrector)
         t0 = len(base.vocabulary)
-        t1 = int(len(base.vocabulary)*1.5)
-        net = NeuralNet([t0, t1, base.count])
-        net.train(base.to_dict())
+        t1 = len(target[0])
+        net = NeuralNet([1, 1])
+        net.load('/home/maxim/projects/deeplom/deep_vlom/diplom/new1.net')
+        print 'loaded'
+        net.train(input, target)
 
 class MyApp(foundation.CementApp):
     class Meta:
