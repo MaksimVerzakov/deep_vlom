@@ -11,7 +11,6 @@ class NeuralNet(object):
 
     def train(self, input, target):
         print "FINDING STARTING WEIGHTS WITH GENETIC ALGORITHM..."
-        import pdb; pdb.set_trace()
         self.net.train_genetic(input, target, individuals=20,
                                generations=500)
         #then train with scipy tnc optimizer
