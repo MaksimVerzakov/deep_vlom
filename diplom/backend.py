@@ -6,12 +6,14 @@ from pymongo import Connection
 class TextBase(object):
     vocabulary = set()
     weight_corrector = {}
+    classes = []
     count = 0
 
     def __init__(self, host, port, db_name):
         connection = Connection(host=host, port=port)
         db = connection[db_name]
         self.collection = db['text_collection2']
+        self.stat = db['stat_collection1']
         self.count = self.collection.count()
         self._normalize()
 
@@ -22,15 +24,18 @@ class TextBase(object):
 
     def _normalize(self):
         print 'Normalize'
+        for doc in self.collection.find():
+            if doc['_class_name'] not in self.classes:
+                self.classes.append(doc['_class_name'])  #map_reduce?
         doc_count = self.collection.count()
         for doc in self.collection.find():
             self.vocabulary = self.vocabulary | set(doc.keys())
         self.vocabulary.remove('_id')
         self.vocabulary.remove('_class_name')
         print len(self.vocabulary)
-        for word in self.vocabulary:
-            docs = self.collection.find({word: {"$exists": True}}).count()
-            self.weight_corrector[word] = math.log(doc_count/docs)
+        #for word in self.vocabulary:
+        #    docs = self.collection.find({word: {"$exists": True}}).count()
+        #    self.weight_corrector[word] = math.log(doc_count/docs)
         print 'Normalized'
 
     def corect_weight(self, doc):
@@ -43,43 +48,44 @@ class TextBase(object):
         classes = []
         d = {}
         print 'to dict started'
-        for doc in self.collection.find():
-            if doc['_class_name'] not in classes:
-                classes.append(doc['_class_name'])
-        for cls in classes:
+        for cls in self.classes:
             d[cls] = []
             for doc in self.collection.find({'_class_name' : cls}):
                 d[cls].append(self.corect_weight(doc))
         print 'to dict endeded'
         return d
 
+    def to_stat(self):
+        for cls in self.classes:
+            print cls
+            docs = self.collection.find({'_class_name' : cls})
+            cls_dict = {}
+            for doc in docs:
+                print 'weight corrector'
+                for word in self.weight_corrector:
+                    correct = self.weight_corrector[word] * doc.get(word, 0.0) #tf_idf
+                    correct /= float(docs.count()) #average
+                    if word not in cls_dict:
+                        cls_dict[word] = 0.0
+                    cls_dict[word] += correct
+                    if cls_dict[word] == 0.0:
+                        cls_dict.pop(word)
+            print len(cls_dict)
+            self.stat.insert({'_cls': cls,
+                              'stat': cls_dict})
+        print 'to stat endeded'
+
     def to_lists(self):
-        d = self.to_dict()
         input = []
         target = []
         print 'start to list'
-        for el in d:
-            input.extend(d[el])
-            null_tar = [0.0 for x in range(len(d))]
-            null_tar[d.keys().index(el)] = 1.0
-            target.extend([null_tar for x in range(len(d[el]))])
+        for cls in self.classes:
+            docs = self.collection.find({'_class_name' : cls})
+            for doc in docs:
+                input.append(self.to_list(doc))
+            target.extend([self.classes.index(cls) for x in range(docs.count())])
         print 'end to list'
         return input, target
 
-class In_Out(object):
-    def __init__(self, host, port, db_name):
-        connection = Connection(host=host, port=port)
-        db = connection[db_name]
-        self.collection = db['in_out']
-
-    def append(self, name, input, target, weight_corrector):
-        self.collection.insert({'name': name,
-                                'input': input,
-                                'target': target,
-                                'weight_corrector': weight_corrector})
-
-    def get(name):
-        return self.collection.findone({'name': name})
-
-
-
+    def to_list(self, doc):
+        return [doc.get(x, 0.0) for x in self.vocabulary]

@@ -32,7 +32,6 @@ def formalize(filename):
             else:
                 continue
             word = word.lower()
-            print word
             words += 1
             if word in stop_words or not word:
                 continue
