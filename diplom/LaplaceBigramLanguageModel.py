@@ -67,6 +67,27 @@ class LaplaceBigramLanguageModel:
             w_prev = w
         return score
 
+    def good_score(self, sentence, add):
+        """ Takes a list of strings as argument and returns the log-probability of the
+            sentence using your language model. Use whatever data you computed in train() here.
+        """
+        score = 0.0
+        w_prev = None
+        w = None
+        for string in sentence:
+            for word in string.split():
+                w = word.decode("utf-8", 'ignore')
+                w = w.strip(u'[,.:;\"\')$«»(?<>!-_—//=]\n\t')
+                w = self.morph.normalize(w.upper())
+                if isinstance(w, set):
+                    w = w.pop()
+                w = w.lower()
+                key = '%s_%s' % (w_prev, w)
+                score += math.log(self.bigramCounts.get(key, 0.0) + add)
+                score -= math.log(self.unigramCounts.get(w_prev, 0.0) + add * self.V)
+            w_prev = w
+        return score
+
     def dumps(self, path):
         f = open(path, 'wb+')
         f.write(str(self.V))
