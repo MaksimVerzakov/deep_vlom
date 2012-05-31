@@ -35,6 +35,8 @@ class LaplaceBigramLanguageModel:
                     w = self.morph.normalize(w.upper())
                     if isinstance(w, set):
                         w = w.pop()
+                    else:
+                        continue
                     w = w.lower()
                     if not self.unigramCounts.has_key(w):
                         self.V += 1

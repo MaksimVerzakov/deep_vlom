@@ -60,7 +60,7 @@ class MyAppBaseController(controller.CementBaseController):
         from pymongo import Connection
         connection = Connection(host=host, port=port)
         db = connection[name]
-        collection = db['test_collection2']
+        collection = db['text_collection1']
         docs = collection.find()
         count = 0.0
         for doc in docs:

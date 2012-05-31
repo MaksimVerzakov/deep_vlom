@@ -12,7 +12,7 @@ class TextBase(object):
     def __init__(self, host, port, db_name):
         connection = Connection(host=host, port=port)
         db = connection[db_name]
-        self.collection = db['text_collection2']
+        self.collection = db['text_collection1']
         self.stat = db['stat_collection1']
         self.count = self.collection.count()
         self._normalize()
