@@ -1,20 +1,23 @@
 #!/usr/bin/env python
 # -- coding: utf-8 --
 import re
-
+import os
 from pymorphy import get_morph
 from settings import DICTS_DIR
 
+stop_dict_path = os.path.join(DICTS_DIR, 'stop_test.txt')
+
 def get_stop_words(path):
+    '''Return stop-words list.'''
     try:
         f = open(path)
     except IOError:
-        return None
+        return []
     return f.read().decode("utf-8", 'ignore').split()
 
-def formalize(filename):
-    morph = get_morph(DICTS_DIR)
-    stop_words = get_stop_words(DICTS_DIR + '/stop_test.txt')
+def formalize(filename, morph_dict=DICTS_DIR, stop_dict=stop_dict_path):
+    morph = get_morph(morph_dict)
+    stop_words = get_stop_words()
     dict = {}
     words = 0.0
     try:

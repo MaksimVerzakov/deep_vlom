@@ -11,10 +11,6 @@ class MyAppBaseController(controller.CementBaseController):
         label = 'base'
         description = "Text Analyzer"
 
-        #config_defaults = dict(
-        #    path=TEXT_DIR,
-        #   )
-
         arguments = [
             (['-t', '--textpath'], dict(action='store', help='path to file to check')),
             (['-b', '--basepath'], dict(action='store', help='path to base')),
@@ -60,7 +56,7 @@ class MyAppBaseController(controller.CementBaseController):
         from pymongo import Connection
         connection = Connection(host=host, port=port)
         db = connection[name]
-        collection = db['text_collection1']
+        collection = db['test_collection2']
         docs = collection.find()
         count = 0.0
         for doc in docs:
@@ -134,7 +130,7 @@ class MyAppBaseController(controller.CementBaseController):
         td = ThemeDict(host, port, name)
         connection = Connection(host=host, port=port)
         db = connection[name]
-        collection = db['text_collection2']
+        collection = db['test_collection2']
         exact_res = 0.0
         approx_res = 0.0
         docs = collection.find()

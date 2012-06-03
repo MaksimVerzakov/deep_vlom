@@ -7,7 +7,6 @@ class TextBase(object):
     vocabulary = set()
     weight_corrector = {}
     classes = []
-    count = 0
 
     def __init__(self, host, port, db_name):
         connection = Connection(host=host, port=port)
@@ -26,12 +25,13 @@ class TextBase(object):
         print 'Normalize'
         for doc in self.collection.find():
             if doc['_class_name'] not in self.classes:
-                self.classes.append(doc['_class_name'])  #map_reduce?
+                self.classes.append(doc['_class_name'])
         doc_count = self.collection.count()
         for doc in self.collection.find():
             self.vocabulary = self.vocabulary | set(doc.keys())
-        self.vocabulary.remove('_id')
-        self.vocabulary.remove('_class_name')
+        if self.vocabulary:
+            self.vocabulary.remove('_id')
+            self.vocabulary.remove('_class_name')
         print len(self.vocabulary)
         #for word in self.vocabulary:
         #    docs = self.collection.find({word: {"$exists": True}}).count()
@@ -39,21 +39,11 @@ class TextBase(object):
         print 'Normalized'
 
     def corect_weight(self, doc):
+        '''Return list of TF-IDF weights for doc'''
         res = []
         for word in self.weight_corrector:
             res.append(self.weight_corrector[word] * doc.get(word, 0.0))
         return res
-
-    def to_dict(self):
-        classes = []
-        d = {}
-        print 'to dict started'
-        for cls in self.classes:
-            d[cls] = []
-            for doc in self.collection.find({'_class_name' : cls}):
-                d[cls].append(self.corect_weight(doc))
-        print 'to dict endeded'
-        return d
 
     def to_stat(self):
         for cls in self.classes:
