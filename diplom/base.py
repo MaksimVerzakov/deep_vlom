@@ -9,6 +9,6 @@ def create_base(path, host, port, db_name):
         docs_dir = os.path.join(path, theme)
         for doc in os.listdir(docs_dir):
             remove_transfer(os.path.join(docs_dir, doc))
-            base.append(theme, formalize(os.path.join(docs_dir, doc)))
+            base.append(doc, formalize(os.path.join(docs_dir, doc)))
     base._normalize()
     return base

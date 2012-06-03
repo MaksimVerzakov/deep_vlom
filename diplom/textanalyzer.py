@@ -104,6 +104,7 @@ class MyAppBaseController(controller.CementBaseController):
             print theme
             docs_dir = os.path.join(text, theme)
             for doc in os.listdir(docs_dir):
+                print doc
                 now += 1
                 f = open(os.path.join(docs_dir, doc))
                 txt = f.readlines()
@@ -112,6 +113,8 @@ class MyAppBaseController(controller.CementBaseController):
                     scores[p] = prob[p].score(txt, smooth)
                 res = scores.items()
                 res.sort(key=lambda x: x[1])
+                print res
+                #theme = '004'
                 if theme == res[-1][0]:
                     exact_res += 1
                 if theme in [x[0] for x in res[-2:]]:
@@ -130,7 +133,7 @@ class MyAppBaseController(controller.CementBaseController):
         td = ThemeDict(host, port, name)
         connection = Connection(host=host, port=port)
         db = connection[name]
-        collection = db['test_collection2']
+        collection = db['text_collection3']
         exact_res = 0.0
         approx_res = 0.0
         docs = collection.find()

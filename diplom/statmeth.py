@@ -5,7 +5,7 @@ class ThemeDict(object):
     def __init__(self, host, port, db_name):
         connection = Connection(host=host, port=port)
         db = connection[db_name]
-        self.collection = db['stat_collection1']
+        self.collection = db['stat_collection']
 
     def classify(self, words_dict):
         best = {'theme': None, 'weight': 0.0}

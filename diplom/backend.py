@@ -11,10 +11,10 @@ class TextBase(object):
     def __init__(self, host, port, db_name):
         connection = Connection(host=host, port=port)
         db = connection[db_name]
-        self.collection = db['text_collection1']
+        self.collection = db['text_collection3']
         self.stat = db['stat_collection1']
         self.count = self.collection.count()
-        self._normalize()
+        #self._normalize()
 
     def append(self, class_name, words_dict):
         words_dict['_class_name'] = class_name
