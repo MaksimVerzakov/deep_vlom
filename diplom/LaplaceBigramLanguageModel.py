@@ -4,7 +4,7 @@ from pymorphy import get_morph
 import json
 from settings import DICTS_DIR
 
-class LaplaceBigramLanguageModel:
+class BigramModel:
 
     def __init__(self, corpus=None):
         """Initialize your data structures in the constructor."""
@@ -44,28 +44,7 @@ class LaplaceBigramLanguageModel:
                         self.bigramCounts[key] += 1
                     w_prev = w
 
-    def score(self, sentence, add):
-        """ Takes a list of strings as argument and returns the log-probability of the
-            sentence using your language model. Use whatever data you computed in train() here.
-        """
-        score = 0.0
-        w_prev = None
-        w = None
-        for string in sentence:
-            for word in string.split():
-                w = word.decode("utf-8", 'ignore')
-                w = w.strip(u'[,.:;\"\')$«»(?<>!-_—//=]\n\t')
-                w = self.morph.normalize(w.upper())
-                if isinstance(w, set):
-                    w = w.pop()
-                w = w.lower()
-                key = '%s_%s' % (w_prev, w)
-                score += math.log(self.bigramCounts.get(key, 0.0) + add)
-                score -= math.log(self.unigramCounts.get(w_prev, 0.0) + add * self.V)
-            w_prev = w
-        return score
-
-    def good_score(self, sentence, add):
+    def score(self, sentence, add=0.005):
         """ Takes a list of strings as argument and returns the log-probability of the
             sentence using your language model. Use whatever data you computed in train() here.
         """
